@@ -60,8 +60,46 @@ def getNoteUserId(noteId):
     return userId[0]
 
 
+def getNote(note_id):
+    noteQuery = f"""
+        SELECT * FROM notes where id = {note_id};
+    """
+    con = connectdb()
+    cursor = con.cursor()
+    cursor.execute(noteQuery)
+    note = cursor.fetchone()
+    con.commit()
+    con.close()
+    return note
+
+
+def getAllNotes(user_id):
+    userNoteQuery = f"""
+        SELECT * FROM notes where user_id = {user_id} ORDER BY modified_date
+    """
+    con = connectdb()
+    cursor = con.cursor()
+    cursor.execute(userNoteQuery)
+    notes = cursor.fetchall()
+    con.commit()
+    con.close()
+    return notes
+
+
 def updateNote(title, description, noteId, userId):
-    pass
+    if userId == getNoteUserId(noteId):
+        updateQuery = f"""
+            UPDATE notes
+            SET title = "{title}", description = "{description}", modified_date = datetime('now')
+            WHERE id = {noteId}
+        """
+        con = connectdb()
+        cursor = con.cursor()
+        cursor.execute(updateQuery)
+        con.commit()
+        con.close()
+    else:
+        print("user doesnot match")
 
 
 def view():
@@ -75,8 +113,10 @@ def view():
     notes = cursor.fetchall()
     for user in users:
         print(user)
+    print("-----------------------------------")
     for note in notes:
         print(note)
+    print("-----------------------------------")
     con.commit()
     con.close()
 
@@ -111,5 +151,7 @@ if __name__ == "__main__":
     # createDB()
     # addUser("lap", "Linaa", "Piya", "123aa456")
     # createNote("note4", 2)
-    view()
+    # view()
+    # updateNote("Java", "Java is Good", 2, 1)
+    print(getAllNotes(1))
     print("Script Completed")
