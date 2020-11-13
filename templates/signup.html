@@ -1,0 +1,22 @@
+{%extends "template-account.html"%}
+{%block title%}
+Signup
+{%endblock%}
+{%block form%}
+<form action="/signup" method = "POST" class="flex flex-col justify-around px-24 py-20  rounded-lg shadow-xl ">
+    <span class="font-medium">
+        Sign Up
+    </span>
+    <div class="text-gray-700">
+        It's quick and easy.
+    </div>
+    <input type="text" name="fname" class="{{inputClass}}" placeholder="First Name" required>
+    <input type="text" name="lname" class="{{inputClass}}" placeholder="Last Name"required >
+    <input type="text" name="uname" class="{{inputClass}}" placeholder="Username" required>
+    <input type="password" name="password" class="{{inputClass}}" placeholder="Password" required>
+    <input type="submit" value="Signup" class="bg-green-600 text-white rounded font-medium my-1 p-1 cursor-pointer">
+    <button class="text-blue-600 rounded mx-4 font-medium my-1 p-1 hover:underline">
+        <a href="/login/">Login Here</a>
+    </button>
+</form>
+{%endblock%}

@@ -1,0 +1,14 @@
+{%extends "template-account.html"%}
+{%block title%}
+Login
+{%endblock%}
+{%block form%}
+<form action="/login" method = "POST" class="flex flex-col justify-around px-24 py-20  rounded-lg shadow-xl ">
+    <input type="text" name="name" class="{{inputClass}}" placeholder="Username" required >
+    <input type="password" name="password" class="{{inputClass}}" placeholder="Password" required >
+    <input type="submit" value="Login" class="bg-blue-600 text-white rounded font-medium my-1 p-1 cursor-pointer">
+    <button class="bg-green-600 text-white rounded mx-4 font-medium my-1 p-1">
+        <a href="/signup/"> Create New Account</a>
+    </button>
+</form>
+{%endblock%}

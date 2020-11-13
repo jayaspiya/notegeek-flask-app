@@ -1,0 +1,23 @@
+{%extends "template.html"%}
+{%block title%}
+{%endblock%}
+{% set inputClass = 'rounded border-2  my-1 p-1 bg-gray-200 focus:bg-white border-transparent focus:border-blue-400 outline-none' %}
+
+{%block main%}
+
+<div class="sm:container mx-auto flex h-screen items-center justify-around px-8">
+    <div>
+            <a href="/">
+                <img src="{{ url_for('static', filename='images/NoteGeek.svg')}}" alt="NoteGeek" class="h-20">
+            </a>
+        <div class="text-xl text-gray-700">
+            Student Note Taking solution
+        </div>
+    </div>
+    <div>
+        {%block form%}
+        {%endblock%}
+    </div>
+</div>
+
+{%endblock%}
