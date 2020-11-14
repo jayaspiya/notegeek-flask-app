@@ -9,10 +9,10 @@ def home():
     if request.method == "POST":
         title = request.form["title"]
         description = request.form["description"]
-        model.createNote(session["user"], title, description)
+        model.createNote(session["user"][0], title, description)
         return redirect(url_for("home"))
     if "user" in session:
-        notes = model.getAllNotes(session["user"])
+        notes = model.getAllNotes(session["user"][0])
         return render_template('index.html', username=session["username"], notes=notes)
     return redirect(url_for("login"))
 

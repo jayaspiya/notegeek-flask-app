@@ -102,7 +102,7 @@ def getAllNotes(user_id):
 
 
 def updateNote(title, description, noteId, userId):
-    if userId == getNoteUserId(noteId)[0]:
+    if userId == getNoteUserId(noteId):
         updateQuery = f"""
             UPDATE notes
             SET title = "{title}", description = "{description}", modified_date = datetime('now')
@@ -114,7 +114,7 @@ def updateNote(title, description, noteId, userId):
         con.commit()
         con.close()
     else:
-        print("user doesnot match")
+        print(f"{userId} doesnot match")
 
 
 def view():
