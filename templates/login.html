@@ -3,8 +3,15 @@
 Login
 {%endblock%}
 {%block form%}
-<form action="/login" method = "POST" class="flex flex-col justify-around px-24 py-20  rounded-lg shadow-xl ">
-    <input type="text" name="name" class="{{inputClass}}" placeholder="Username" required >
+<form action="/login/" method = "POST" class="flex flex-col justify-around px-24 py-20  rounded-lg shadow-xl ">
+    {%with messages = get_flashed_messages()%}
+    {%if messages%}
+        {%for msg in messages%}
+            <p>{{msg}}</p>
+        {%endfor%}
+    {%endif%}
+    {%endwith%}
+    <input type="text" name="username" class="{{inputClass}}" placeholder="Username" required >
     <input type="password" name="password" class="{{inputClass}}" placeholder="Password" required >
     <input type="submit" value="Login" class="bg-blue-600 text-white rounded font-medium my-1 p-1 cursor-pointer">
     <button class="bg-green-600 text-white rounded mx-4 font-medium my-1 p-1">

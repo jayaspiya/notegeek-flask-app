@@ -3,13 +3,20 @@
 Signup
 {%endblock%}
 {%block form%}
-<form action="/signup" method = "POST" class="flex flex-col justify-around px-24 py-20  rounded-lg shadow-xl ">
+<form action="/signup/" method = "POST" class="flex flex-col justify-around px-24 py-20  rounded-lg shadow-xl ">
     <span class="font-medium">
         Sign Up
     </span>
     <div class="text-gray-700">
         It's quick and easy.
     </div>
+    {%with messages = get_flashed_messages()%}
+        {%if messages%}
+            {%for msg in messages%}
+                <p>{{msg}}</p>
+            {%endfor%}
+        {%endif%}
+    {%endwith%}
     <input type="text" name="fname" class="{{inputClass}}" placeholder="First Name" required>
     <input type="text" name="lname" class="{{inputClass}}" placeholder="Last Name"required >
     <input type="text" name="uname" class="{{inputClass}}" placeholder="Username" required>

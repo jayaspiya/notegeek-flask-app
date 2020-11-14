@@ -1,3 +1,4 @@
 .vscode
 notegeek.db
 venv
+__pycache__

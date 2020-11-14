@@ -20,10 +20,10 @@ def addUser(username, fname, lname, password):
     return False
 
 
-def createNote(title, user_id):
+def createNote(user_id, title, description=""):
     noteCreateQuery = f"""
         INSERT INTO notes(title, modified_date, user_id, description)
-        VALUES("{title}",datetime('now'), {user_id}, "")
+        VALUES("{title}",datetime('now'), {user_id}, "{description}")
     """
     con = connectdb()
     cursor = con.cursor()
@@ -47,6 +47,21 @@ def doesUserExist(username):
     return True
 
 
+def getUserId(username, password):
+    searchQuery = f"""
+        SELECT id FROM users WHERE username = "{username}" and password = "{password}";
+    """
+    con = connectdb()
+    cursor = con.cursor()
+    cursor.execute(searchQuery)
+    userId = cursor.fetchone()
+    con.commit()
+    con.close()
+    if userId is None:
+        return None
+    return userId
+
+
 def getNoteUserId(noteId):
     con = connectdb()
     cursor = con.cursor()
@@ -57,7 +72,7 @@ def getNoteUserId(noteId):
     userId = cursor.fetchone()
     con.commit()
     con.close()
-    return userId[0]
+    return userId
 
 
 def getNote(note_id):
@@ -75,7 +90,7 @@ def getNote(note_id):
 
 def getAllNotes(user_id):
     userNoteQuery = f"""
-        SELECT * FROM notes where user_id = {user_id} ORDER BY modified_date
+        SELECT * FROM notes where user_id = {user_id} ORDER BY modified_date DESC
     """
     con = connectdb()
     cursor = con.cursor()
@@ -87,7 +102,7 @@ def getAllNotes(user_id):
 
 
 def updateNote(title, description, noteId, userId):
-    if userId == getNoteUserId(noteId):
+    if userId == getNoteUserId(noteId)[0]:
         updateQuery = f"""
             UPDATE notes
             SET title = "{title}", description = "{description}", modified_date = datetime('now')
@@ -151,7 +166,6 @@ if __name__ == "__main__":
     # createDB()
     # addUser("lap", "Linaa", "Piya", "123aa456")
     # createNote("note4", 2)
-    # view()
+    view()
     # updateNote("Java", "Java is Good", 2, 1)
-    print(getAllNotes(1))
     print("Script Completed")

@@ -8,11 +8,13 @@ Home
             <a href="/">
                 <img src="{{ url_for('static', filename='images/NoteGeek.svg')}}" alt="NoteGeek" class="h-10">
             </a>
-        <button class="text-sm text-gray-800">
-            <a href="#">Logout</a>
-        </button>
+            <span class="text-sm text-gray-800 leading-8 py-1">
+                <b>{{username}},</b>
+                <button >
+                    <a href="/logout">Logout</a>
+                </button>
+            </span>
     </header>
-
     {%block home%}
 
     {% endblock%}
