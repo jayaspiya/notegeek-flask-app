@@ -2,7 +2,7 @@ import os
 from flask import Flask, render_template, url_for, redirect, request, flash, session
 import model
 app = Flask(__name__)
-app.secret_key = "Top Secret Hash Password"
+app.secret_key = "!#Top0Secret1Hash2Password"
 
 
 if os.path.isfile("./notegeek.db") == False:
