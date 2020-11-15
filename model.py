@@ -175,8 +175,4 @@ def createDB():
 
 if __name__ == "__main__":
     # createDB()
-    # addUser("lap", "Linaa", "Piya", "123aa456")
-    # createNote("note4", 2)
     view()
-    # updateNote("Java", "Java is Good", 2, 1)
-    print("Script Completed")

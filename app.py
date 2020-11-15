@@ -1,7 +1,12 @@
+import os
 from flask import Flask, render_template, url_for, redirect, request, flash, session
 import model
 app = Flask(__name__)
 app.secret_key = "Top Secret Hash Password"
+
+
+if os.path.isfile("./notegeek.db") == False:
+    model.createDB()
 
 
 @app.route('/', methods=["POST", "GET"])
@@ -85,4 +90,4 @@ def logout():
 
 
 if __name__ == "__main__":
-    app.run(port=7000, debug=True)
+    app.run()
