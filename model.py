@@ -117,6 +117,17 @@ def updateNote(title, description, noteId, userId):
         print(f"{userId} doesnot match")
 
 
+def deleteNote(noteId):
+    deleteQuery = f"""
+        DELETE FROM notes WHERE id = {noteId}
+    """
+    con = connectdb()
+    cursor = con.cursor()
+    cursor.execute(deleteQuery)
+    con.commit()
+    con.close()
+
+
 def view():
     userQuery = "SELECT * FROM users;"
     noteQuery = "SELECT * FROM notes;"

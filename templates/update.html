@@ -4,9 +4,17 @@
 {%endblock%}
 {%block home%}
     {%set updateInputClass = "text-gray-900 bg-gray-100 my-1 border-2 border-transparent focus:border-blue-400 outline-none rounded p-1"%}
+    {%set buttonClass = "text-white rounded text-lg  font-medium  p-1 cursor-pointer mx-1"%}
     <form action="/{{username}}/{{noteId}}" method="POST" class="flex flex-col">
         <input type="text" name="title" placeholder="Title" value="{{note[1]}}" class="{{updateInputClass}} text-3xl">
-        <textarea name="description" cols="30" rows="20" placeholder="Whats on your mind" class="{{updateInputClass}}">{{note[2]}}</textarea>
-        <input type="submit" value="Update Note"  class="bg-blue-400 text-white rounded text-lg sm:mx-32 font-medium my-1 p-1 cursor-pointer">
+        <textarea name="description" cols="20" rows="10" placeholder="Whats on your mind" class="{{updateInputClass}}">{{note[2]}}</textarea>
+        <div class="flex justify-center sm:mx-32 my-1">
+            <input type="submit" value="Update Note"  class="bg-blue-400 {{buttonClass}}">
+            <button class="bg-red-400 {{buttonClass}}">
+                <a href="/{{username}}/{{noteId}}/delete">
+                    Delete Note
+                </a>
+            </button>
+        </div>
     </form>
 {%endblock%}

@@ -1,5 +1,4 @@
 const formToggler = document.querySelector("#formToggler");
-console.log(formToggler)
 let formHidden = true;
 
 formToggler.addEventListener("click", formToggle)
