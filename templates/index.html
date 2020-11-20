@@ -29,7 +29,11 @@
                     </a>
                 </button>
             </div>
-                <p>{{note[2][:200]}}....</p>
+                {%if note[2]|length > 100 %}
+                    <p>{{note[2][:100]}}....</p>
+                {%else%}
+                    <p>{{note[2]}}</p>
+                {%endif%}
         </div>
     {%endfor%}
 </div>

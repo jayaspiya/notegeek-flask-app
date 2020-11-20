@@ -2,7 +2,7 @@ import os
 from flask import Flask, render_template, url_for, redirect, request, flash, session
 import model
 app = Flask(__name__)
-app.secret_key = "!#Top0Secret1Hash2Password"
+app.secret_key = "!#Top0Secret1Hash2Password345600"
 
 
 if os.path.isfile("./notegeek.db") == False:
@@ -15,7 +15,7 @@ def home():
         title = request.form["title"]
         description = request.form["description"]
         model.createNote(session["user"][0], title, description)
-        flash(f"{title} Created")
+        flash(f"'{title}' Created")
         return redirect(url_for("home"))
     if "user" in session:
         notes = model.getAllNotes(session["user"][0])
