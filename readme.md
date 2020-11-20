@@ -21,11 +21,6 @@ Basic Flask Application with session management and SQLite database. Users can c
 - Tailwind CSS
 - SQLite as Database
 
-## Drawbacks
-
-- Database Failure: New database is created every time the server restart.
-- No proper validation system in forms
-
 ## Usage
 
 ```sh
@@ -36,7 +31,11 @@ $ pip install -r requirements.txt
 $ python app.py
 ```
 
+## Drawbacks
+
+- Database Failure: New database is created every time the server restart.
+- No proper validation system in forms
+
 ## Status
 
 Status: Completed
-
